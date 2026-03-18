@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci
-      - run: npm run build -- --configuration production --base-href /tavern-quill/
+      - run: npm run build -- --configuration production --base-href /TavernQuill/
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
