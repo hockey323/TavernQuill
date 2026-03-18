@@ -61,6 +61,9 @@ export class EditorService {
     return this.soulComplete() && this.voiceComplete() && this.avatarBuffer() !== null;
   });
 
+  /** Whether an avatar is currently set. */
+  readonly hasAvatar = computed(() => this.avatarBuffer() !== null);
+
   /** Validation errors for display. */
   readonly validationErrors = computed<string[]>(() => {
     const errs: string[] = [];
@@ -138,6 +141,24 @@ export class EditorService {
     if (index >= 0 && index <= 3) {
       this.activeChapter.set(index);
     }
+  }
+
+  // ── Greetings ────────────────────────────────────────────────────────────
+
+  addGreeting(): void {
+    const list = [...this.card().data.alternate_greetings, ''];
+    this.updateField('alternate_greetings', list);
+  }
+
+  removeGreeting(index: number): void {
+    const list = this.card().data.alternate_greetings.filter((_, i) => i !== index);
+    this.updateField('alternate_greetings', list);
+  }
+
+  updateGreeting(index: number, value: string): void {
+    const list = [...this.card().data.alternate_greetings];
+    list[index] = value;
+    this.updateField('alternate_greetings', list);
   }
 
   // ── Private ──────────────────────────────────────────────────────────────
