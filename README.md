@@ -2,8 +2,6 @@
 
 A high-performance, accessible, and privacy-first SillyTavern V3 character card editor. Build and refine your LLM characters with a modern, reactive interface.
 
-![TavernQuill Preview](src/assets/samples/Oliver.card.png)
-
 ## Core Philosophy
 
 - **Zero-Server Privacy**: All card processing (PNG metadata reading/writing) happens entirely in your browser. No data ever leaves your machine.
