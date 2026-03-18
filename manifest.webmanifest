@@ -1,0 +1,16 @@
+{
+  "name": "TavernQuill",
+  "short_name": "TavernQuill",
+  "description": "SillyTavern V3 Character Card Architect — privacy-first, client-side editor.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0f1114",
+  "background_color": "#0f1114",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
