@@ -1,0 +1,80 @@
+<section class="chapter" aria-labelledby="soul-heading">
+  <h2 id="soul-heading" class="chapter-title">
+    <span class="chapter-icon">✦</span>
+    {{ i18n.chapters.soul.title }}
+  </h2>
+  <p class="chapter-subtitle">{{ i18n.chapters.soul.subtitle }}</p>
+
+  <div class="field-group">
+    <label for="field-name">{{ i18n.fields.name }} <span class="required">*</span></label>
+    <input
+      id="field-name"
+      type="text"
+      [value]="editor.cardData().name"
+      (input)="onFieldChange('name', $event)"
+      placeholder="Enter character name…"
+      aria-required="true"
+    />
+    @if (!editor.cardData().name.trim()) {
+      <p class="field-error" aria-live="polite">{{ i18n.errors.name_required }}</p>
+    }
+  </div>
+
+  <div class="field-group">
+    <label for="field-description">{{ i18n.fields.description }}</label>
+    <textarea
+      id="field-description"
+      [value]="editor.cardData().description"
+      (input)="onFieldChange('description', $event)"
+      placeholder="Describe the character's appearance, backstory, and key traits…"
+      rows="6"
+    ></textarea>
+  </div>
+
+  <div class="field-group">
+    <label for="field-personality">{{ i18n.fields.personality }}</label>
+    <textarea
+      id="field-personality"
+      [value]="editor.cardData().personality"
+      (input)="onFieldChange('personality', $event)"
+      placeholder="A concise personality summary…"
+      rows="3"
+    ></textarea>
+  </div>
+
+  <div class="field-row">
+    <div class="field-group">
+      <label for="field-creator">{{ i18n.fields.creator }}</label>
+      <input
+        id="field-creator"
+        type="text"
+        [value]="editor.cardData().creator"
+        (input)="onFieldChange('creator', $event)"
+        placeholder="Your name or handle"
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="field-version">{{ i18n.fields.character_version }}</label>
+      <input
+        id="field-version"
+        type="text"
+        [value]="editor.cardData().character_version"
+        (input)="onFieldChange('character_version', $event)"
+        placeholder="e.g. 1.0.0"
+      />
+    </div>
+  </div>
+
+  <div class="field-group">
+    <label for="field-tags">{{ i18n.fields.tags }}</label>
+    <input
+      id="field-tags"
+      type="text"
+      [value]="tagsString"
+      (input)="onTagsChange($event)"
+      placeholder="Comma-separated tags…"
+    />
+    <p class="field-hint">Separate tags with commas (e.g. fantasy, original, dark)</p>
+  </div>
+</section>

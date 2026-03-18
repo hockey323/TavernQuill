@@ -1,0 +1,90 @@
+<aside class="mirror" aria-label="Card preview">
+  <h2 class="mirror-heading">{{ i18n.misc.card_preview }}</h2>
+
+  <div class="mirror-card">
+    <!-- Avatar -->
+    <div class="mirror-avatar-frame">
+      @if (editor.avatarUrl()) {
+        <img
+          class="mirror-avatar"
+          [src]="editor.avatarUrl()"
+          [alt]="editor.cardData().name || 'Character avatar'"
+        />
+      } @else {
+        <div class="mirror-avatar-placeholder">
+          <span>📷</span>
+        </div>
+      }
+    </div>
+
+    <!-- Name -->
+    <h3 class="mirror-name">
+      {{ editor.cardData().name || 'Untitled Character' }}
+    </h3>
+
+    <!-- Tags -->
+    @if (editor.cardData().tags.length > 0) {
+      <div class="mirror-tags">
+        @for (tag of editor.cardData().tags; track $index) {
+          <span class="mirror-tag">{{ tag }}</span>
+        }
+      </div>
+    }
+
+    <!-- Creator & Version -->
+    @if (editor.cardData().creator) {
+      <p class="mirror-creator">by {{ editor.cardData().creator }}
+        @if (editor.cardData().character_version) {
+          <span class="mirror-version">v{{ editor.cardData().character_version }}</span>
+        }
+      </p>
+    }
+
+    <!-- Description -->
+    @if (editor.cardData().description) {
+      <div class="mirror-section">
+        <h4 class="mirror-section-label">Description</h4>
+        <p class="mirror-description">{{ descriptionExcerpt() }}</p>
+      </div>
+    }
+
+    <!-- First Message Preview -->
+    @if (editor.cardData().first_mes) {
+      <div class="mirror-section">
+        <h4 class="mirror-section-label">First Message</h4>
+        <div class="mirror-message">
+          <p class="mirror-message-text">{{ editor.cardData().first_mes }}</p>
+        </div>
+      </div>
+    }
+
+    <!-- Stats -->
+    <div class="mirror-stats">
+      <div class="stat">
+        <span class="stat-value">{{ editor.cardData().alternate_greetings.length + 1 }}</span>
+        <span class="stat-label">Greetings</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">{{ editor.cardData().tags.length }}</span>
+        <span class="stat-label">Tags</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- V2 Upgrade Warning -->
+  @if (editor.isV2Upgrade()) {
+    <div class="mirror-warning" role="alert" aria-live="polite">
+      ⚠️ {{ i18n.misc.v2_upgrade_warning }}
+    </div>
+  }
+
+  <!-- Validation Errors -->
+  @if (editor.validationErrors().length > 0) {
+    <div class="mirror-errors" aria-live="polite">
+      <h4 class="errors-title">Export Checklist</h4>
+      @for (err of editor.validationErrors(); track $index) {
+        <p class="error-item">⬡ {{ err }}</p>
+      }
+    </div>
+  }
+</aside>

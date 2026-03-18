@@ -1,0 +1,79 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   App Shell — Three-pane "Studio" layout
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-toolbar {
+  flex-shrink: 0;
+}
+
+.app-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr var(--mirror-width);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-sidebar {
+  overflow-y: auto;
+}
+
+.app-workspace {
+  overflow-y: auto;
+  background: var(--color-bg);
+  border-left: 1px solid var(--color-border-subtle);
+  border-right: 1px solid var(--color-border-subtle);
+}
+
+.app-mirror {
+  overflow-y: auto;
+}
+
+.chapter-panel {
+  animation: chapterFadeIn var(--transition-slow) forwards;
+}
+
+@keyframes chapterFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive: Collapse panes on smaller viewports ──────────────────── */
+
+@media (max-width: 1024px) {
+  .app-layout {
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+
+  .app-mirror {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .app-sidebar {
+    display: none; /* TODO: Tab-based mobile nav overlay */
+  }
+}

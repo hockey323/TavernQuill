@@ -1,0 +1,22 @@
+{
+  "spec": "chara_card_v3",
+  "spec_version": "3.0",
+  "data": {
+    "name": "",
+    "description": "",
+    "personality": "",
+    "scenario": "",
+    "first_mes": "",
+    "mes_example": "",
+    "system_prompt": "",
+    "post_history_instructions": "",
+    "creator_notes": "",
+    "tags": [],
+    "creator": "",
+    "character_version": "",
+    "created": 0,
+    "modified": 0,
+    "alternate_greetings": [],
+    "extensions": {}
+  }
+}

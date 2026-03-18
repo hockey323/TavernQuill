@@ -1,0 +1,65 @@
+<div class="app-shell">
+  <!-- Toolbar (spanning full width) -->
+  <div class="app-toolbar">
+    <app-toolbar />
+  </div>
+
+  <!-- Three-pane layout -->
+  <div class="app-layout">
+    <!-- Left Sidebar: Stepper -->
+    <div class="app-sidebar">
+      <app-chapter-stepper />
+    </div>
+
+    <!-- Center: Active Chapter -->
+    <main class="app-workspace" aria-label="Card editor workspace">
+      @switch (editor.activeChapter()) {
+        @case (0) {
+          <div
+            id="chapter-panel-0"
+            role="tabpanel"
+            [attr.aria-labelledby]="'chapter-tab-0'"
+            class="chapter-panel"
+          >
+            <app-chapter-soul />
+          </div>
+        }
+        @case (1) {
+          <div
+            id="chapter-panel-1"
+            role="tabpanel"
+            [attr.aria-labelledby]="'chapter-tab-1'"
+            class="chapter-panel"
+          >
+            <app-chapter-mind />
+          </div>
+        }
+        @case (2) {
+          <div
+            id="chapter-panel-2"
+            role="tabpanel"
+            [attr.aria-labelledby]="'chapter-tab-2'"
+            class="chapter-panel"
+          >
+            <app-chapter-voice />
+          </div>
+        }
+        @case (3) {
+          <div
+            id="chapter-panel-3"
+            role="tabpanel"
+            [attr.aria-labelledby]="'chapter-tab-3'"
+            class="chapter-panel"
+          >
+            <app-chapter-ghost />
+          </div>
+        }
+      }
+    </main>
+
+    <!-- Right: Live Mirror -->
+    <div class="app-mirror">
+      <app-live-mirror />
+    </div>
+  </div>
+</div>

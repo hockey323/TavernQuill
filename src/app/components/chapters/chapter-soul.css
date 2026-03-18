@@ -1,0 +1,52 @@
+/* Chapter shared styles */
+.chapter {
+  padding: var(--space-lg);
+  max-width: 720px;
+}
+
+.chapter-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-xs);
+}
+
+.chapter-icon {
+  color: var(--color-accent);
+  font-size: var(--font-size-lg);
+}
+
+.chapter-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xl);
+}
+
+.field-group {
+  margin-bottom: var(--space-lg);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.field-hint {
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.field-error {
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+.required {
+  color: var(--color-error);
+}

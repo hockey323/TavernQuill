@@ -1,0 +1,55 @@
+<section class="chapter" aria-labelledby="mind-heading">
+  <h2 id="mind-heading" class="chapter-title">
+    <span class="chapter-icon">◈</span>
+    {{ i18n.chapters.mind.title }}
+  </h2>
+  <p class="chapter-subtitle">{{ i18n.chapters.mind.subtitle }}</p>
+
+  <div class="field-group">
+    <label for="field-scenario">{{ i18n.fields.scenario }}</label>
+    <textarea
+      id="field-scenario"
+      [value]="editor.cardData().scenario"
+      (input)="onFieldChange('scenario', $event)"
+      placeholder="Describe the setting or situation the character exists in…"
+      rows="5"
+    ></textarea>
+  </div>
+
+  <div class="field-group">
+    <label for="field-system-prompt">{{ i18n.fields.system_prompt }}</label>
+    <textarea
+      id="field-system-prompt"
+      [value]="editor.cardData().system_prompt"
+      (input)="onFieldChange('system_prompt', $event)"
+      placeholder="System-level instructions for the LLM…"
+      rows="6"
+      class="mono-input"
+    ></textarea>
+    <p class="field-hint">Injected as a system message before the conversation. Supports <span ngNonBindable>{{char}}</span> and <span ngNonBindable>{{user}}</span> macros.</p>
+  </div>
+
+  <div class="field-group">
+    <label for="field-post-history">{{ i18n.fields.post_history_instructions }}</label>
+    <textarea
+      id="field-post-history"
+      [value]="editor.cardData().post_history_instructions"
+      (input)="onFieldChange('post_history_instructions', $event)"
+      placeholder="Instructions appended after the conversation history…"
+      rows="4"
+      class="mono-input"
+    ></textarea>
+    <p class="field-hint">Placed after all messages, just before the model generates its response.</p>
+  </div>
+
+  <div class="field-group">
+    <label for="field-creator-notes">{{ i18n.fields.creator_notes }}</label>
+    <textarea
+      id="field-creator-notes"
+      [value]="editor.cardData().creator_notes"
+      (input)="onFieldChange('creator_notes', $event)"
+      placeholder="Notes for other users about how to use this card…"
+      rows="4"
+    ></textarea>
+  </div>
+</section>

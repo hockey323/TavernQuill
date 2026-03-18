@@ -1,0 +1,40 @@
+<nav class="stepper" aria-label="Chapter navigation">
+  <div class="stepper-brand">
+    <span class="brand-icon">📜</span>
+    <div class="brand-text">
+      <span class="brand-title">{{ i18n.app.title }}</span>
+      <span class="brand-subtitle">{{ i18n.app.subtitle }}</span>
+    </div>
+  </div>
+
+  <div class="stepper-list" role="tablist" aria-label="Card editor chapters" aria-orientation="vertical">
+    @for (chapter of chapters; track chapter.titleKey; let i = $index) {
+      <button
+        role="tab"
+        class="stepper-item"
+        [class.active]="editor.activeChapter() === i"
+        [attr.aria-selected]="editor.activeChapter() === i"
+        [attr.aria-controls]="'chapter-panel-' + i"
+        [attr.id]="'chapter-tab-' + i"
+        [attr.tabindex]="editor.activeChapter() === i ? 0 : -1"
+        (click)="selectChapter(i)"
+        (keydown)="onKeyDown($event, i)"
+        type="button"
+      >
+        <span class="step-number">{{ i + 1 }}</span>
+        <span class="step-icon">{{ chapter.icon }}</span>
+        <div class="step-text">
+          <span class="step-title">{{ i18n.chapters[chapter.titleKey].title }}</span>
+          <span class="step-subtitle">{{ i18n.chapters[chapter.titleKey].subtitle }}</span>
+        </div>
+        <span
+          class="step-check"
+          [class.complete]="isComplete(i)"
+          [attr.aria-label]="isComplete(i) ? i18n.misc.chapter_complete : i18n.misc.chapter_incomplete"
+        >
+          {{ isComplete(i) ? '✓' : '' }}
+        </span>
+      </button>
+    }
+  </div>
+</nav>

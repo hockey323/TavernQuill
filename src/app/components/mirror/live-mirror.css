@@ -1,0 +1,199 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-surface-0);
+  border-left: 1px solid var(--color-border-subtle);
+  overflow-y: auto;
+}
+
+.mirror {
+  padding: var(--space-md);
+}
+
+.mirror-heading {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+}
+
+.mirror-card {
+  margin: 0 var(--space-md) var(--space-md);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Avatar */
+.mirror-avatar-frame {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--color-surface-2);
+}
+
+.mirror-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mirror-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--color-text-muted);
+  background: linear-gradient(135deg, var(--color-surface-2), var(--color-surface-3));
+}
+
+/* Name */
+.mirror-name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  padding: var(--space-md) var(--space-md) var(--space-xs);
+  color: var(--color-text);
+}
+
+/* Tags */
+.mirror-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  padding: 0 var(--space-md) var(--space-sm);
+}
+
+.mirror-tag {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  background: var(--color-accent-muted);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Creator */
+.mirror-creator {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.mirror-version {
+  color: var(--color-text-muted);
+  margin-left: var(--space-xs);
+  font-family: var(--font-mono);
+}
+
+/* Sections */
+.mirror-section {
+  padding: 0 var(--space-md) var(--space-md);
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-md);
+}
+
+.mirror-section-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xs);
+}
+
+.mirror-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* First message bubble */
+.mirror-message {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.mirror-message-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+/* Stats */
+.mirror-stats {
+  display: flex;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-sm);
+
+  &:not(:last-child) {
+    border-right: 1px solid var(--color-border-subtle);
+  }
+}
+
+.stat-value {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}
+
+.stat-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* Warning banner */
+.mirror-warning {
+  margin: 0 var(--space-md) var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-warning);
+}
+
+/* Validation errors */
+.mirror-errors {
+  margin: 0 var(--space-md) var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.errors-title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.error-item {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  margin-bottom: var(--space-xs);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

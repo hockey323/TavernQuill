@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en-CA" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <title>TavernQuill — SillyTavern V3 Card Architect</title>
+    <meta name="description" content="A privacy-first, client-side character card editor for SillyTavern V3. Create, edit, and export AI character cards entirely in your browser." />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f1114" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Initialise theme before first paint to prevent flash -->
+    <script>
+      (function() {
+        var theme = 'dark';
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          theme = 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>

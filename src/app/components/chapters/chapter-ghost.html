@@ -1,0 +1,65 @@
+<section class="chapter" aria-labelledby="ghost-heading">
+  <h2 id="ghost-heading" class="chapter-title">
+    <span class="chapter-icon">◎</span>
+    {{ i18n.chapters.ghost.title }}
+  </h2>
+  <p class="chapter-subtitle">{{ i18n.chapters.ghost.subtitle }}</p>
+
+  @if (lorebook.hasLorebook()) {
+    <!-- Lorebook present — read-only view -->
+    <div class="lorebook-info">
+      @if (lorebook.lorebookName()) {
+        <h3 class="lorebook-name">{{ lorebook.lorebookName() }}</h3>
+      }
+      @if (lorebook.lorebookDescription()) {
+        <p class="lorebook-desc">{{ lorebook.lorebookDescription() }}</p>
+      }
+      <p class="lorebook-stats">
+        {{ lorebook.enabledCount() }} / {{ lorebook.totalCount() }} entries enabled
+      </p>
+    </div>
+
+    <div class="entries-list" role="list" aria-label="Lorebook entries">
+      @for (entry of lorebook.entries(); track entry.id) {
+        <div class="entry-card" role="listitem" [class.entry-disabled]="!entry.enabled">
+          <div class="entry-header">
+            <span class="entry-id">#{{ entry.id }}</span>
+            <span class="entry-status" [class.status-enabled]="entry.enabled">
+              {{ entry.enabled ? 'Enabled' : 'Disabled' }}
+            </span>
+          </div>
+
+          <div class="entry-keys">
+            @for (key of entry.keys; track $index) {
+              <span class="key-badge">{{ key }}</span>
+            }
+          </div>
+
+          @if (entry.comment) {
+            <p class="entry-comment">{{ entry.comment }}</p>
+          }
+
+          <pre class="entry-content">{{ entry.content }}</pre>
+
+          <div class="entry-meta">
+            <span>Order: {{ entry.insertion_order }}</span>
+            @if (entry.case_sensitive) {
+              <span>Case-sensitive</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <!-- No lorebook — coming soon placeholder -->
+    <div class="coming-soon">
+      <div class="coming-soon-icon">📖</div>
+      <h3>{{ i18n.misc.lorebook_coming_soon }}</h3>
+      <p>{{ i18n.misc.no_lorebook }}</p>
+      <p class="coming-soon-note">
+        Import a card with an embedded lorebook to view its entries here.
+        Full lorebook editing is planned for a future release.
+      </p>
+    </div>
+  }
+</section>

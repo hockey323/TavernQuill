@@ -1,0 +1,72 @@
+<section class="chapter" aria-labelledby="voice-heading">
+  <h2 id="voice-heading" class="chapter-title">
+    <span class="chapter-icon">◉</span>
+    {{ i18n.chapters.voice.title }}
+  </h2>
+  <p class="chapter-subtitle">{{ i18n.chapters.voice.subtitle }}</p>
+
+  <div class="field-group">
+    <label for="field-first-mes">{{ i18n.fields.first_mes }} <span class="required">*</span></label>
+    <textarea
+      id="field-first-mes"
+      [value]="editor.cardData().first_mes"
+      (input)="onFieldChange('first_mes', $event)"
+      placeholder="The opening message the character will send…"
+      rows="8"
+      aria-required="true"
+    ></textarea>
+    @if (!editor.cardData().first_mes.trim()) {
+      <p class="field-error" aria-live="polite">{{ i18n.errors.first_mes_required }}</p>
+    }
+  </div>
+
+  <div class="field-group">
+    <label for="field-mes-example">{{ i18n.fields.mes_example }}</label>
+    <textarea
+      id="field-mes-example"
+      [value]="editor.cardData().mes_example"
+      (input)="onFieldChange('mes_example', $event)"
+      [attr.placeholder]="mesExamplePlaceholder"
+      rows="10"
+      class="mono-input"
+    ></textarea>
+    <p class="field-hint">Use &lt;START&gt; separators, <span ngNonBindable>{{user}}</span> and <span ngNonBindable>{{char}}</span> macros.</p>
+  </div>
+
+  <!-- Alternate Greetings -->
+  <div class="greetings-section">
+    <div class="greetings-header">
+      <h3 class="greetings-title">{{ i18n.fields.alternate_greetings }}</h3>
+      <button class="btn btn-sm" (click)="addGreeting()" type="button">
+        <span>+</span> {{ i18n.actions.add_greeting }}
+      </button>
+    </div>
+
+    @for (greeting of editor.cardData().alternate_greetings; track $index) {
+      <div class="greeting-card">
+        <div class="greeting-header">
+          <span class="greeting-label">Greeting {{ $index + 2 }}</span>
+          <button
+            class="btn btn-ghost btn-sm"
+            (click)="removeGreeting($index)"
+            type="button"
+            [attr.aria-label]="'Remove greeting ' + ($index + 2)"
+          >
+            ✕
+          </button>
+        </div>
+        <textarea
+          [value]="greeting"
+          (input)="onGreetingChange($index, $event)"
+          placeholder="An alternative opening message…"
+          rows="5"
+          [attr.aria-label]="'Alternate greeting ' + ($index + 2)"
+        ></textarea>
+      </div>
+    }
+
+    @if (editor.cardData().alternate_greetings.length === 0) {
+      <p class="greetings-empty">No alternate greetings yet. Click "Add Greeting" to create one.</p>
+    }
+  </div>
+</section>

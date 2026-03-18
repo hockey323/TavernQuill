@@ -1,0 +1,102 @@
+<header class="toolbar" role="toolbar" aria-label="Card tools">
+  <div class="toolbar-group">
+    <!-- Import -->
+    <div
+      class="drop-zone"
+      [class.drag-over]="isDragOver()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <label class="btn" for="file-import" tabindex="0">
+        <span>📥</span> {{ i18n.actions.import }}
+      </label>
+      <input
+        id="file-import"
+        type="file"
+        accept=".png"
+        (change)="onFileSelect($event)"
+        class="visually-hidden"
+      />
+    </div>
+
+    <!-- Export -->
+    <button
+      class="btn btn-accent"
+      (click)="exportCard()"
+      [disabled]="!editor.canExport()"
+      type="button"
+    >
+      <span>📤</span> {{ i18n.actions.export }}
+    </button>
+
+    <!-- Avatar Upload -->
+    <label class="btn" for="avatar-upload" tabindex="0">
+      <span>🖼️</span> {{ i18n.actions.upload_avatar }}
+    </label>
+    <input
+      id="avatar-upload"
+      type="file"
+      accept=".png,image/png"
+      (change)="onAvatarSelect($event)"
+      class="visually-hidden"
+    />
+  </div>
+
+  <div class="toolbar-group">
+    <!-- New Card -->
+    <button class="btn" (click)="newCard()" type="button">
+      <span>✨</span> {{ i18n.actions.new_card }}
+    </button>
+
+    <!-- Starter Cards -->
+    <div class="starter-wrapper">
+      <button class="btn" (click)="toggleStarterMenu()" type="button" aria-haspopup="menu" [attr.aria-expanded]="showStarterMenu()">
+        <span>📋</span> {{ i18n.actions.load_starter }}
+      </button>
+      @if (showStarterMenu()) {
+        <div class="starter-menu" role="menu">
+          <button class="starter-item" role="menuitem" (click)="loadStarter('assistant')" type="button">
+            <span class="starter-icon">🤖</span>
+            <div>
+              <span class="starter-name">{{ i18n.misc.starter_assistant }}</span>
+              <span class="starter-desc">Minimal fields only</span>
+            </div>
+          </button>
+          <button class="starter-item" role="menuitem" (click)="loadStarter('complex')" type="button">
+            <span class="starter-icon">🧭</span>
+            <div>
+              <span class="starter-name">{{ i18n.misc.starter_wanderer }}</span>
+              <span class="starter-desc">Fully populated with lorebook</span>
+            </div>
+          </button>
+          <button class="starter-item" role="menuitem" (click)="loadStarter('blank')" type="button">
+            <span class="starter-icon">📄</span>
+            <div>
+              <span class="starter-name">{{ i18n.misc.starter_blank }}</span>
+              <span class="starter-desc">Start from scratch</span>
+            </div>
+          </button>
+        </div>
+      }
+    </div>
+
+    <!-- Theme Toggle -->
+    <button
+      class="btn btn-icon"
+      (click)="toggleTheme()"
+      type="button"
+      [attr.aria-label]="i18n.actions.toggle_theme"
+    >
+      {{ isDark() ? '☀️' : '🌙' }}
+    </button>
+  </div>
+</header>
+
+<!-- Import Error -->
+@if (importError()) {
+  <div class="toolbar-error" role="alert" aria-live="assertive">
+    <span>⚠️ {{ importError() }}</span>
+    <button class="btn btn-ghost btn-sm" (click)="importError.set(null)" type="button">✕</button>
+  </div>
+}
