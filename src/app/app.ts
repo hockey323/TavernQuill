@@ -1,9 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { ChapterStepperComponent } from './components/stepper/chapter-stepper';
-import { ChapterSoulComponent } from './components/chapters/chapter-soul';
-import { ChapterMindComponent } from './components/chapters/chapter-mind';
-import { ChapterVoiceComponent } from './components/chapters/chapter-voice';
-import { ChapterGhostComponent } from './components/chapters/chapter-ghost';
 import { LiveMirrorComponent } from './components/mirror/live-mirror';
 import { ToolbarComponent } from './components/toolbar/toolbar';
 import { EditorService } from './services/editor.service';
@@ -12,11 +9,8 @@ import { EditorService } from './services/editor.service';
   selector: 'app-root',
   standalone: true,
   imports: [
+    RouterOutlet,
     ChapterStepperComponent,
-    ChapterSoulComponent,
-    ChapterMindComponent,
-    ChapterVoiceComponent,
-    ChapterGhostComponent,
     LiveMirrorComponent,
     ToolbarComponent,
   ],

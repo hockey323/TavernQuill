@@ -32,40 +32,55 @@
     <meta name="twitter:image" content="https://hockey323.github.io/TavernQuill/og-image.png" />
     <meta name="twitter:image:alt" content="TavernQuill logo — glowing quill pen on dark background" />
 
-    <!-- JSON-LD: WebApplication schema for rich results & LLM crawlers -->
+    <!-- JSON-LD: Structured Data for the App and Website Authority -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "TavernQuill",
-      "url": "https://hockey323.github.io/TavernQuill/",
-      "description": "A free, privacy-first SillyTavern V3 character card editor. Build, edit, and export chara cards with full V3 spec support, lorebooks, and PNG metadata embedding — all in your browser, no server required.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Any",
-      "browserRequirements": "Requires a modern browser with JavaScript enabled",
-      "inLanguage": "en-CA",
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": [
-        "SillyTavern V3 character card creation",
-        "Lorebook editor",
-        "PNG metadata embedding and extraction",
-        "V2 to V3 card upgrade",
-        "Client-side only — no data uploaded",
-        "Dark and light theme support"
-      ],
-      "screenshot": "https://hockey323.github.io/TavernQuill/og-image.png",
-      "author": {
-        "@type": "Person",
-        "name": "hockey323",
-        "url": "https://github.com/hockey323"
-      },
-      "codeRepository": "https://github.com/hockey323/TavernQuill",
-      "license": "https://github.com/hockey323/TavernQuill/blob/main/LICENSE"
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://hockey323.github.io/TavernQuill/#software",
+          "name": "TavernQuill",
+          "url": "https://hockey323.github.io/TavernQuill/",
+          "description": "A free, privacy-first SillyTavern V3 character card editor. Build, edit, and export chara cards with full V3 spec support, lorebooks, and PNG metadata embedding — all in your browser, no server required.",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires a modern browser with JavaScript enabled",
+          "inLanguage": "en-CA",
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "SillyTavern V3 character card creation",
+            "Lorebook editor",
+            "PNG metadata embedding and extraction",
+            "V2 to V3 card upgrade",
+            "Client-side only — no data uploaded",
+            "Dark and light theme support"
+          ],
+          "screenshot": "https://hockey323.github.io/TavernQuill/og-image.png",
+          "author": {
+            "@type": "Person",
+            "name": "hockey323",
+            "url": "https://github.com/hockey323"
+          },
+          "codeRepository": "https://github.com/hockey323/TavernQuill",
+          "license": "https://github.com/hockey323/TavernQuill/blob/main/LICENSE"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://hockey323.github.io/TavernQuill/#website",
+          "url": "https://hockey323.github.io/TavernQuill/",
+          "name": "TavernQuill",
+          "publisher": {
+            "@id": "https://github.com/hockey323"
+          },
+          "description": "Premium character card architect for the local LLM community."
+        }
+      ]
     }
     </script>
     <base href="/TavernQuill/" />

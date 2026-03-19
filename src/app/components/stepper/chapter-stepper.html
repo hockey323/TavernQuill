@@ -9,17 +9,16 @@
 
   <div class="stepper-list" role="tablist" aria-label="Card editor chapters" aria-orientation="vertical">
     @for (chapter of chapters; track chapter.titleKey; let i = $index) {
-      <button
+      <a
         role="tab"
         class="stepper-item"
-        [class.active]="editor.activeChapter() === i"
+        [routerLink]="chapter.path"
+        routerLinkActive="active"
         [attr.aria-selected]="editor.activeChapter() === i"
         [attr.aria-controls]="'chapter-panel-' + i"
         [attr.id]="'chapter-tab-' + i"
-        [attr.tabindex]="editor.activeChapter() === i ? 0 : -1"
-        (click)="selectChapter(i)"
+        [attr.tabindex]="0"
         (keydown)="onKeyDown($event, i)"
-        type="button"
       >
         <span class="step-number">{{ i + 1 }}</span>
         <span class="step-icon">{{ chapter.icon }}</span>
@@ -34,7 +33,7 @@
         >
           {{ isComplete(i) ? '✓' : '' }}
         </span>
-      </button>
+      </a>
     }
   </div>
 </nav>

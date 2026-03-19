@@ -1,27 +1,31 @@
 import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { EditorService } from '../../services/editor.service';
 import { I18N, I18nStrings } from '../../i18n/en-ca';
 
 interface ChapterInfo {
   icon: string;
   titleKey: 'soul' | 'mind' | 'voice' | 'ghost';
+  path: string;
 }
 
 @Component({
   selector: 'app-chapter-stepper',
   standalone: true,
+  imports: [RouterModule],
   templateUrl: './chapter-stepper.html',
   styleUrl: './chapter-stepper.css',
 })
 export class ChapterStepperComponent {
   protected readonly editor = inject(EditorService);
   protected readonly i18n = inject<I18nStrings>(I18N);
+  private readonly router = inject(Router);
 
   protected readonly chapters: ChapterInfo[] = [
-    { icon: '✦', titleKey: 'soul' },
-    { icon: '◈', titleKey: 'mind' },
-    { icon: '◉', titleKey: 'voice' },
-    { icon: '◎', titleKey: 'ghost' },
+    { icon: '✦', titleKey: 'soul', path: '/soul' },
+    { icon: '◈', titleKey: 'mind', path: '/mind' },
+    { icon: '◉', titleKey: 'voice', path: '/voice' },
+    { icon: '◎', titleKey: 'ghost', path: '/ghost' },
   ];
 
   protected isComplete(index: number): boolean {
@@ -32,10 +36,6 @@ export class ChapterStepperComponent {
       case 3: return this.editor.ghostComplete();
       default: return false;
     }
-  }
-
-  protected selectChapter(index: number): void {
-    this.editor.setChapter(index);
   }
 
   protected onKeyDown(event: KeyboardEvent, index: number): void {
@@ -53,11 +53,16 @@ export class ChapterStepperComponent {
       event.preventDefault();
       newIndex = 3;
     }
+    
     if (newIndex !== index) {
-      this.editor.setChapter(newIndex);
+      const targetPath = this.chapters[newIndex].path;
+      this.router.navigateByUrl(targetPath);
+      
       // Focus the new tab
-      const tabs = document.querySelectorAll<HTMLElement>('[role="tab"]');
-      tabs[newIndex]?.focus();
+      setTimeout(() => {
+        const tabs = document.querySelectorAll<HTMLElement>('.stepper-item');
+        tabs[newIndex]?.focus();
+      }, 0);
     }
   }
 }

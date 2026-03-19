@@ -77,3 +77,77 @@
     display: none; /* TODO: Tab-based mobile nav overlay */
   }
 }
+
+/* SEO / About Section Landing */
+.about-section {
+  padding: 4rem var(--space-md);
+  margin-top: 4rem;
+  border-top: 1px solid var(--color-border-subtle);
+  background: linear-gradient(180deg, var(--color-surface-1) 0%, var(--color-surface-0) 100%);
+}
+
+.about-card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.about-intro {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-intro strong {
+  color: var(--color-text);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: 3rem;
+}
+
+.about-item {
+  padding: var(--space-md);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.about-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+.about-item h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+.about-item p {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.about-footer {
+  text-align: center;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
