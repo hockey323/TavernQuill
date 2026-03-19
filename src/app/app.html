@@ -13,13 +13,10 @@
 
     <!-- Center: Active Chapter -->
     <main class="app-workspace" aria-label="Card editor workspace">
-      <!-- Main Content (Chapter) via Routing -->
-      <router-outlet />
-
       <!-- SEO / Landing Section (Visible to search engines and users) -->
       <section class="about-section" id="about">
         <div class="about-card">
-          <h2 class="about-title">What is TavernQuill?</h2>
+          <h1 class="about-title">What is TavernQuill?</h1>
           <p class="about-intro">
             TavernQuill is a high-performance, precision architect for
             <strong>SillyTavern V3 character cards</strong>. We built it to be the fastest way to
@@ -28,28 +25,27 @@
 
           <div class="about-grid">
             <div class="about-item">
-              <h3>SillyTavern V3 Format</h3>
+              <h2>SillyTavern V3 Spec</h2>
               <p>Full support for the Spec V3 standard, including depth prompts, talkativeness settings, and enhanced metadata.</p>
             </div>
             <div class="about-item">
-              <h3>World Info & Lorebooks</h3>
+              <h2>World Info & Lorebooks</h2>
               <p>Easily manage and edit world info entries. TavernQuill extracts lorebooks directly from your PNG character cards.</p>
             </div>
             <div class="about-item">
-              <h3>Privacy-First Architecture</h3>
-              <p>TavernQuill is a client-side only editor. Your characters and sprites never leave your machine — no uploads, no logs.</p>
+              <h2>Privacy-First Architecture</h2>
+              <p>TavernQuill is a client-side only editor. Your characters and sprites never leave your machine — no uploads.</p>
             </div>
             <div class="about-item">
-              <h3>PNG Metadata Extraction</h3>
+              <h2>PNG Metadata Extraction</h2>
               <p>Drag and drop any character PNG to instantly extract, edit, and re-export the embedded character data seamlessly.</p>
             </div>
           </div>
-
-          <footer class="about-footer">
-            <p>Designed for the local LLM and roleplay community. Free, open-source, and offline-ready.</p>
-          </footer>
         </div>
       </section>
+
+      <!-- Main Content (Chapter) via Routing -->
+      <router-outlet />
     </main>
 
     <!-- Right: Live Mirror -->

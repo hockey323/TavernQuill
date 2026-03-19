@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { EditorService } from '../../services/editor.service';
 import { I18N, I18nStrings } from '../../i18n/en-ca';
 
@@ -11,6 +12,15 @@ import { I18N, I18nStrings } from '../../i18n/en-ca';
 export class ChapterVoiceComponent {
   protected readonly editor = inject(EditorService);
   protected readonly i18n = inject<I18nStrings>(I18N);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+
+  constructor() {
+    this.title.setTitle('Voice: Greetings & Dialogue — TavernQuill');
+    this.meta.updateTag({ name: 'description', content: 'Write the perfect first message and dialogue examples for your SillyTavern character. Define their tone, style, and unique verbal quirks.' });
+    this.meta.updateTag({ property: 'og:title', content: 'Voice: Greetings & Dialogue — TavernQuill' });
+    this.editor.setChapter(2);
+  }
 
   protected readonly mesExamplePlaceholder =
     'Example conversations showing the character\'s tone and style…\n\nUse <START> to separate examples.\n{{user}}: User message\n{{char}}: Character response';

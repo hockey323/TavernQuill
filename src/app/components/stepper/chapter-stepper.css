@@ -140,3 +140,20 @@
     font-weight: var(--font-weight-bold);
   }
 }
+
+.stepper-divider {
+  height: 1px;
+  background: var(--color-border-subtle);
+  margin: var(--space-sm) var(--space-sm);
+  opacity: 0.5;
+}
+
+.guide-link {
+  margin-top: auto; /* Push to bottom of list */
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.guide-link .step-icon {
+  font-size: 1rem;
+}
+
