@@ -13,51 +13,59 @@
 
     <!-- Center: Active Chapter -->
     <main class="app-workspace" aria-label="Card editor workspace">
-      <!-- SEO / Landing Section (Visible to search engines and users) -->
+      <!-- SEO / Landing Section (Collapsible for Humans, Full for Bots) -->
       <section class="about-section" id="about">
-        <div class="about-card">
-          <h1 class="about-title">What is TavernQuill?</h1>
-          <p class="about-intro">
-            TavernQuill is a high-performance, precision architect for
-            <strong>SillyTavern V3 character cards</strong>. We built it to be the fastest way to
-            refine AI character personalities, lorebooks, and sprites — with zero server interaction.
-          </p>
+        <details class="about-accordion">
+          <summary class="about-summary">
+            <span class="summary-icon">✦</span>
+            <span class="summary-text">What is TavernQuill? & FAQ</span>
+            <span class="summary-badge">Spec V3</span>
+          </summary>
 
-          <div class="about-grid">
-            <div class="about-item">
-              <h2>SillyTavern V3 Spec</h2>
-              <p>Full support for the Spec V3 standard, including depth prompts and <a routerLink="/guide">advanced technical specifications</a>.</p>
+          <div class="about-card">
+            <h1 class="about-title">What is TavernQuill?</h1>
+            <p class="about-intro">
+              TavernQuill is a high-performance, precision architect for
+              <strong>SillyTavern V3 character cards</strong>. We built it to be the fastest way to
+              refine AI character personalities, lorebooks, and sprites — with zero server interaction.
+            </p>
+
+            <div class="about-grid">
+              <div class="about-item">
+                <h2>SillyTavern V3 Spec</h2>
+                <p>Full support for the Spec V3 standard, including depth prompts and <a routerLink="/guide">advanced technical specifications</a>.</p>
+              </div>
+              <div class="about-item">
+                <h2>World Info & Lorebooks</h2>
+                <p>Easily manage world info. TavernQuill extracts <a routerLink="/lorebook-ghost-world-info">lorebooks and ghost data</a> directly from PNG cards.</p>
+              </div>
+              <div class="about-item">
+                <h2>Privacy-First Architecture</h2>
+                <p>Edit your <a routerLink="/character-soul-editor">character's identity and soul</a> in a fully local, browser-native environment.</p>
+              </div>
+              <div class="about-item">
+                <h2>Dialogue & Greetings</h2>
+                <p>Refine your character's <a routerLink="/greetings-voice-dialogue">voice, dialogue examples, and greetings</a> with zero server lag.</p>
+              </div>
             </div>
-            <div class="about-item">
-              <h2>World Info & Lorebooks</h2>
-              <p>Easily manage world info. TavernQuill extracts <a routerLink="/lorebook-ghost-world-info">lorebooks and ghost data</a> directly from PNG cards.</p>
-            </div>
-            <div class="about-item">
-              <h2>Privacy-First Architecture</h2>
-              <p>Edit your <a routerLink="/character-soul-editor">character's identity and soul</a> in a fully local, browser-native environment.</p>
-            </div>
-            <div class="about-item">
-              <h2>Dialogue & Greetings</h2>
-              <p>Refine your character's <a routerLink="/greetings-voice-dialogue">voice, dialogue examples, and greetings</a> with zero server lag.</p>
+
+            <div class="about-faq">
+              <h2>Frequently Asked Questions</h2>
+              <div class="faq-item">
+                <h3>Does TavernQuill require an internet connection?</h3>
+                <p>No. TavernQuill is a browser-native local application. Once loaded, it runs entirely on your machine. We do not upload your character data, sprites, or lorebooks to any server.</p>
+              </div>
+              <div class="faq-item">
+                <h3>Is the SillyTavern V3 specification fully supported?</h3>
+                <p>Yes. We support the complete V3 JSON schema, including depth prompts, talkativeness settings, and enhanced metadata fields required for modern LLM roleplay.</p>
+              </div>
+              <div class="faq-item">
+                <h3>How does TavernQuill handle my privacy?</h3>
+                <p>TavernQuill is privacy-first by design. All PNG metadata extraction and embedding happens locally via the browser's Canvas and FileReader APIs. No data ever leaves your device.</p>
+              </div>
             </div>
           </div>
-
-          <div class="about-faq">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-              <h3>Does TavernQuill require an internet connection?</h3>
-              <p>No. TavernQuill is a browser-native local application. Once loaded, it runs entirely on your machine. We do not upload your character data, sprites, or lorebooks to any server.</p>
-            </div>
-            <div class="faq-item">
-              <h3>Is the SillyTavern V3 specification fully supported?</h3>
-              <p>Yes. We support the complete V3 JSON schema, including depth prompts, talkativeness settings, and enhanced metadata fields required for modern LLM roleplay.</p>
-            </div>
-            <div class="faq-item">
-              <h3>How does TavernQuill handle my privacy?</h3>
-              <p>TavernQuill is privacy-first by design. All PNG metadata extraction and embedding happens locally via the browser's Canvas and FileReader APIs. No data ever leaves your device.</p>
-            </div>
-          </div>
-        </div>
+        </details>
       </section>
 
       <!-- Main Content (Chapter) via Routing -->
