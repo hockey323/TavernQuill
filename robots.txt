@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hockey323.github.io/TavernQuill/sitemap.xml
