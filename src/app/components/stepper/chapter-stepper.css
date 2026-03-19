@@ -28,6 +28,9 @@
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.02em;
   color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
 }
 
 .brand-subtitle {
