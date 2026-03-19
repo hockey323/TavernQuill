@@ -16,9 +16,9 @@ export class ChapterMindComponent {
   private readonly meta = inject(Meta);
 
   constructor() {
-    this.title.setTitle('Mind: Scenario & Context — TavernQuill');
-    this.meta.updateTag({ name: 'description', content: 'Design your SillyTavern V3 character scenario, system prompts, and context notes. Fine-tune how your AI character interacts with the world.' });
-    this.meta.updateTag({ property: 'og:title', content: 'Mind: Scenario & Context — TavernQuill' });
+    this.title.setTitle('Scenario & Mind Context Editor — SillyTavern V3 Architect');
+    this.meta.updateTag({ name: 'description', content: 'Craft your character\'s scenario, system prompts, and mind context with precision. TavernQuill is the ultimate architect for SillyTavern V3 character logic.' });
+    this.meta.updateTag({ property: 'og:title', content: 'Scenario & Mind Context Editor — SillyTavern V3 Architect' });
     this.editor.setChapter(1);
   }
 

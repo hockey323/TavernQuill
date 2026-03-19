@@ -22,10 +22,10 @@ export class ChapterStepperComponent {
   private readonly router = inject(Router);
 
   protected readonly chapters: ChapterInfo[] = [
-    { icon: '✦', titleKey: 'soul', path: '/soul' },
-    { icon: '◈', titleKey: 'mind', path: '/mind' },
-    { icon: '◉', titleKey: 'voice', path: '/voice' },
-    { icon: '◎', titleKey: 'ghost', path: '/ghost' },
+    { icon: '✦', titleKey: 'soul', path: '/character-soul-editor' },
+    { icon: '◈', titleKey: 'mind', path: '/scenario-mind-context' },
+    { icon: '◉', titleKey: 'voice', path: '/greetings-voice-dialogue' },
+    { icon: '◎', titleKey: 'ghost', path: '/lorebook-ghost-world-info' },
   ];
 
   protected isComplete(index: number): boolean {

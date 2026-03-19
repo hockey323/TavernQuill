@@ -18,9 +18,9 @@ export class ChapterGhostComponent {
   private readonly meta = inject(Meta);
 
   constructor() {
-    this.title.setTitle('Ghost: World Info & Lorebooks — TavernQuill');
-    this.meta.updateTag({ name: 'description', content: 'Extract and edit lorebooks and world info from your character cards. Full support for SillyTavern V3 world info specifications.' });
-    this.meta.updateTag({ property: 'og:title', content: 'Ghost: World Info & Lorebooks — TavernQuill' });
+    this.title.setTitle('Lorebook & World Info Ghost Editor — SillyTavern V3');
+    this.meta.updateTag({ name: 'description', content: 'Extract, edit, and build lorebooks and world info directly from your PNG character cards. TavernQuill provides the ultimate SillyTavern ghost data editor.' });
+    this.meta.updateTag({ property: 'og:title', content: 'Lorebook & World Info Ghost Editor — SillyTavern V3' });
     this.editor.setChapter(3);
   }
 }

@@ -16,9 +16,9 @@ export class ChapterSoulComponent {
   private readonly meta = inject(Meta);
 
   constructor() {
-    this.title.setTitle('Soul: Character Identity — TavernQuill');
-    this.meta.updateTag({ name: 'description', content: 'Edit your SillyTavern V3 character soul: refine the name, personality summary, and core identity traits in our privacy-first local editor.' });
-    this.meta.updateTag({ property: 'og:title', content: 'Soul: Character Identity — TavernQuill' });
+    this.title.setTitle('Character Soul Editor — SillyTavern Identity Architect');
+    this.meta.updateTag({ name: 'description', content: 'The premium architect for SillyTavern character identity and soul. Refine personality traits, creator tags, and core character data in our browser-native editor.' });
+    this.meta.updateTag({ property: 'og:title', content: 'Character Soul Editor — SillyTavern Identity Architect' });
     this.editor.setChapter(0);
   }
 

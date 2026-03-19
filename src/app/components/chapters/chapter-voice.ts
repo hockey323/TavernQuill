@@ -16,9 +16,9 @@ export class ChapterVoiceComponent {
   private readonly meta = inject(Meta);
 
   constructor() {
-    this.title.setTitle('Voice: Greetings & Dialogue — TavernQuill');
-    this.meta.updateTag({ name: 'description', content: 'Write the perfect first message and dialogue examples for your SillyTavern character. Define their tone, style, and unique verbal quirks.' });
-    this.meta.updateTag({ property: 'og:title', content: 'Voice: Greetings & Dialogue — TavernQuill' });
+    this.title.setTitle('Voice, Greetings & Dialogue Editor — SillyTavern V3');
+    this.meta.updateTag({ name: 'description', content: 'Craft authentic greetings and dialogue examples for your AI character. TavernQuill provides the premium voice editor for the SillyTavern community.' });
+    this.meta.updateTag({ property: 'og:title', content: 'Voice, Greetings & Dialogue Editor — SillyTavern V3' });
     this.editor.setChapter(2);
   }
 
