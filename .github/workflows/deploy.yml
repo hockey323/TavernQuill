@@ -17,6 +17,10 @@ jobs:
           node-version: '22'
       - run: npm ci
       - run: npm run build -- --configuration production --base-href /TavernQuill/
+      - name: Fix for GitHub Pages 404s
+        run: |
+          cp dist/tavern-quill/browser/soul/index.html dist/tavern-quill/browser/index.html
+          cp dist/tavern-quill/browser/index.html dist/tavern-quill/browser/404.html
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
