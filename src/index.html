@@ -79,6 +79,36 @@
             "@id": "https://github.com/hockey323"
           },
           "description": "Premium character card architect for the local LLM community."
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://hockey323.github.io/TavernQuill/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Does TavernQuill require an internet connection?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. TavernQuill is a browser-native local application. Once loaded, it runs entirely on your machine. We do not upload your character data, sprites, or lorebooks to any server."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the SillyTavern V3 specification fully supported?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We support the complete V3 JSON schema, including depth prompts, talkativeness settings, and enhanced metadata fields required for modern LLM roleplay."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does TavernQuill handle my privacy?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "TavernQuill is privacy-first by design. All PNG metadata extraction and embedding happens locally via the browser's Canvas and FileReader APIs. No data ever leaves your device."
+              }
+            }
+          ]
         }
       ]
     }
