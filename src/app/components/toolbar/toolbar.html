@@ -20,14 +20,26 @@
       />
     </div>
 
-    <!-- Export -->
+    <!-- Export PNG -->
     <button
       class="btn btn-accent"
-      (click)="exportCard()"
-      [disabled]="!editor.canExport()"
+      (click)="exportPng()"
+      [disabled]="!editor.canExportPng()"
       type="button"
+      [title]="editor.canExportPng() ? '' : 'Avatar required for PNG export'"
     >
-      <span>📤</span> {{ i18n.actions.export }}
+      <span>📤</span> {{ i18n.actions.export_png }}
+    </button>
+
+    <!-- Export JSON -->
+    <button
+      class="btn"
+      (click)="exportJson()"
+      [disabled]="!editor.canExportJson()"
+      type="button"
+      [title]="editor.canExportJson() ? '' : 'Requirements not met'"
+    >
+      <span>📄</span> {{ i18n.actions.export_json }}
     </button>
 
     <!-- Avatar Upload -->

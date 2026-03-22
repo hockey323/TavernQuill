@@ -30,7 +30,8 @@ export interface I18nFields {
 
 export interface I18nActions {
   import: string;
-  export: string;
+  export_png: string;
+  export_json: string;
   new_card: string;
   load_starter: string;
   toggle_theme: string;
@@ -114,8 +115,9 @@ export const EN_CA: I18nStrings = {
     depth_prompt: 'Depth Prompt',
   },
   actions: {
-    import: 'Import Card',
-    export: 'Export Card',
+    import: 'Import PNG',
+    export_png: 'Export PNG',
+    export_json: 'Export JSON',
     new_card: 'New Card',
     load_starter: 'Load Starter',
     toggle_theme: 'Toggle Theme',

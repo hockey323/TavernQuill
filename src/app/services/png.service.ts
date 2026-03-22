@@ -105,4 +105,14 @@ export class PngService {
 
     return new Blob([new Uint8Array(outputBuffer) as BlobPart], { type: 'image/png' });
   }
+
+  /**
+   * Export the character card as a JSON file.
+   */
+  async exportJson(card: CharaCardV3): Promise<Blob> {
+    card.data.modified = Date.now();
+    const exportPayload = buildExportPayload(card);
+    const jsonString = JSON.stringify(exportPayload, null, 2);
+    return new Blob([jsonString], { type: 'application/json' });
+  }
 }

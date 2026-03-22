@@ -56,9 +56,14 @@ export class EditorService {
   /** Chapter 4 (Ghost) always "complete" (lorebook is optional). */
   readonly ghostComplete = computed(() => true);
 
-  /** Overall card readiness for export. */
-  readonly canExport = computed(() => {
+  /** Overall card readiness for PNG export (requires avatar). */
+  readonly canExportPng = computed(() => {
     return this.soulComplete() && this.voiceComplete() && this.avatarBuffer() !== null;
+  });
+
+  /** Overall card readiness for JSON export (no avatar required). */
+  readonly canExportJson = computed(() => {
+    return this.soulComplete() && this.voiceComplete();
   });
 
   /** Whether an avatar is currently set. */
@@ -70,7 +75,7 @@ export class EditorService {
     const d = this.card().data;
     if (!d.name.trim()) errs.push('Character name is required.');
     if (!d.first_mes.trim()) errs.push('At least one greeting (first message) is required.');
-    if (!this.avatarBuffer()) errs.push('An avatar image (PNG) is required for export.');
+    if (!this.avatarBuffer()) errs.push('An avatar image (PNG) is required for PNG export (you can still export as JSON).');
     return errs;
   });
 

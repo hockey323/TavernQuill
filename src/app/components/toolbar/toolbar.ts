@@ -75,21 +75,34 @@ export class ToolbarComponent {
 
   // ── Export ────────────────────────────────────────────────────────────
 
-  protected async exportCard(): Promise<void> {
+  protected async exportPng(): Promise<void> {
     const buffer = this.editor.avatarBuffer();
     if (!buffer) return;
 
     try {
       const blob = await this.pngService.writeChara(this.editor.card(), buffer);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${this.editor.cardData().name || 'character'}.png`;
-      a.click();
-      URL.revokeObjectURL(url);
+      this.downloadBlob(blob, `${this.editor.cardData().name || 'character'}.png`);
     } catch (e) {
-      this.importError.set(e instanceof Error ? e.message : 'Failed to export card.');
+      this.importError.set(e instanceof Error ? e.message : 'Failed to export PNG.');
     }
+  }
+
+  protected async exportJson(): Promise<void> {
+    try {
+      const blob = await this.pngService.exportJson(this.editor.card());
+      this.downloadBlob(blob, `${this.editor.cardData().name || 'character'}.json`);
+    } catch (e) {
+      this.importError.set(e instanceof Error ? e.message : 'Failed to export JSON.');
+    }
+  }
+
+  private downloadBlob(blob: Blob, filename: string): void {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   // ── Avatar Upload ─────────────────────────────────────────────────────
