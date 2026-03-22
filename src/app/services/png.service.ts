@@ -115,4 +115,50 @@ export class PngService {
     const jsonString = JSON.stringify(exportPayload, null, 2);
     return new Blob([jsonString], { type: 'application/json' });
   }
+
+  /**
+   * Ensures the returned array buffer is a valid PNG.
+   * If the input file is not a PNG (e.g. JPEG), it converts it using a canvas.
+   */
+  async ensurePng(file: File): Promise<Uint8Array> {
+    const buf = await file.arrayBuffer();
+    const arr = new Uint8Array(buf);
+
+    // Check PNG signature
+    const PNG_SIGNATURE = [137, 80, 78, 71, 13, 10, 26, 10];
+    let isPng = arr.length >= 8;
+    for (let i = 0; i < 8 && isPng; i++) {
+      if (arr[i] !== PNG_SIGNATURE[i]) isPng = false;
+    }
+
+    if (isPng) {
+      return arr;
+    }
+
+    // Convert via canvas
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return reject(new Error('Failed to get 2d context for image conversion.'));
+        ctx.drawImage(img, 0, 0);
+
+        canvas.toBlob(blob => {
+          if (!blob) return reject(new Error('Failed to convert image to PNG.'));
+          blob.arrayBuffer()
+            .then(b => resolve(new Uint8Array(b)))
+            .catch(reject);
+        }, 'image/png');
+        URL.revokeObjectURL(img.src);
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(img.src);
+        reject(new Error('Failed to load image for conversion.'));
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  }
 }

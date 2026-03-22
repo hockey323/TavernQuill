@@ -120,8 +120,8 @@ export class ToolbarComponent {
         this.editor.setAvatar(result.avatarBuffer);
       }
     } catch {
-      const buf = await file.arrayBuffer();
-      this.editor.setAvatar(new Uint8Array(buf));
+      const pngBuf = await this.pngService.ensurePng(file);
+      this.editor.setAvatar(pngBuf);
     }
 
     input.value = '';
