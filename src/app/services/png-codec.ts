@@ -168,14 +168,31 @@ export function readCharaFromPng(buffer: Uint8Array): PngReadResult {
 
 /**
  * Handle smart decoding of the payload.
- * Tavern V2 cards are usually raw JSON; V3 cards are Base64.
+ * Tavern V2 cards are usually raw JSON (UTF-8); V3 cards are Base64 (UTF-8).
  */
 function decodePayload(payload: string): string {
   try {
-    return atob(payload);
+    const binary = atob(payload);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return new TextDecoder().decode(bytes);
   } catch {
     return payload; // Fallback to raw if not Base64
   }
+}
+
+/**
+ * Unicode-safe Base64 encoding.
+ */
+function encodePayload(str: string): string {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
 }
 
 // ── Writing ─────────────────────────────────────────────────────────────────
@@ -239,8 +256,8 @@ export function writeCharaToPng(
   });
 
   // Build new tEXt chunks
-  const ccv3Chunk = buildTextChunk('ccv3', btoa(v3JsonString));
-  const charaChunk = buildTextChunk('chara', btoa(v2JsonString));
+  const ccv3Chunk = buildTextChunk('ccv3', encodePayload(v3JsonString));
+  const charaChunk = buildTextChunk('chara', encodePayload(v2JsonString));
 
   // Reassemble: signature + all chunks (except IEND) + new chunks + IEND
   const iendChunk = preservedChunks.find(c => c.type === 'IEND');

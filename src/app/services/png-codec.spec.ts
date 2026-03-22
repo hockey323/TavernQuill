@@ -87,5 +87,22 @@ describe('PngCodec', () => {
 
       expect(JSON.parse(result.json).name).toBe('Base64 V2');
     });
+
+    it('should handle Unicode (UTF-8) characters in Base64 payload', () => {
+      // "TavernQuill 🖋️ Tavern"
+      const originalText = JSON.stringify({ name: 'TavernQuill 🖋️ Tavern' });
+      const bytes = new TextEncoder().encode(originalText);
+      let binary = '';
+      for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      const unicodeBase64 = btoa(binary);
+      
+      const ccv3Chunk = createTextChunk('ccv3', unicodeBase64);
+      const buffer = new Uint8Array([...signature, ...ccv3Chunk, ...iend]);
+      const result = readCharaFromPng(buffer);
+
+      expect(JSON.parse(result.json).name).toBe('TavernQuill 🖋️ Tavern');
+    });
   });
 });
