@@ -107,14 +107,24 @@ export class ToolbarComponent {
 
   // ── Avatar Upload ─────────────────────────────────────────────────────
 
-  protected onAvatarSelect(event: Event): void {
+  protected async onAvatarSelect(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
-    if (input.files?.[0]) {
-      const file = input.files[0];
-      file.arrayBuffer().then(buf => {
-        this.editor.setAvatar(new Uint8Array(buf));
-      });
+    if (!input.files?.[0]) return;
+    const file = input.files[0];
+
+    try {
+      const result = await this.pngService.readChara(file);
+      if (window.confirm(this.i18n.misc.import_avatar_prompt)) {
+        this.editor.loadCard(result.card, result.avatarBuffer, result.isV2Upgrade);
+      } else {
+        this.editor.setAvatar(result.avatarBuffer);
+      }
+    } catch {
+      const buf = await file.arrayBuffer();
+      this.editor.setAvatar(new Uint8Array(buf));
     }
+
+    input.value = '';
   }
 
   // ── Starter Cards ─────────────────────────────────────────────────────

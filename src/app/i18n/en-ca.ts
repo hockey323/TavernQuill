@@ -65,6 +65,7 @@ export interface I18nMisc {
   starter_assistant: string;
   starter_wanderer: string;
   starter_blank: string;
+  import_avatar_prompt: string;
 }
 
 export interface I18nStrings {
@@ -149,5 +150,6 @@ export const EN_CA: I18nStrings = {
     starter_assistant: 'The Assistant',
     starter_wanderer: 'The Wanderer',
     starter_blank: 'Blank Slate',
+    import_avatar_prompt: 'This image contains a character card. Do you want to import its details?',
   },
 };
