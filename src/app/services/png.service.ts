@@ -66,6 +66,11 @@ export class PngService {
       };
     }
 
+    // Fix missing depth_prompt role
+    if (parsed.data?.extensions?.depth_prompt && !parsed.data.extensions.depth_prompt.role) {
+      parsed.data.extensions.depth_prompt.role = 'system';
+    }
+
     const validation = validateCharaCard(parsed);
     if (!validation.valid) {
       const messages = validation.errors.map(e => `${e.path}: ${e.message}`).join('\n');
