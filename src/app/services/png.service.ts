@@ -44,13 +44,14 @@ export class PngService {
     
     if (isV2Upgrade || (typeof parsed === 'object' && parsed !== null && !parsed.spec)) {
       // It's a V2 card or raw data. Map V2 fields to the V3 data structure.
+      const v2Data = (parsed && typeof parsed === 'object' && parsed.data) ? parsed.data : parsed;
       parsed = {
         ...template,
         data: {
           ...template.data,
-          ...parsed,
+          ...v2Data,
           // Handle specific renames or types if necessary
-          tags: Array.isArray(parsed.tags) ? parsed.tags : [],
+          tags: Array.isArray(v2Data.tags) ? v2Data.tags : [],
         }
       };
     } else {
