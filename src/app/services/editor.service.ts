@@ -95,16 +95,17 @@ export class EditorService {
   // ── Actions ──────────────────────────────────────────────────────────────
 
   /** Load a card from an imported payload. */
-  loadCard(card: CharaCardV3, avatarBuffer: Uint8Array, isV2Upgrade: boolean): void {
+  loadCard(card: CharaCardV3, avatarBuffer: Uint8Array | null, isV2Upgrade: boolean): void {
     this.card.set(card);
     this.avatarBuffer.set(avatarBuffer);
     this.isV2Upgrade.set(isV2Upgrade);
     this.activeChapter.set(0);
 
-    // Create object URL for preview
     this.revokeAvatarUrl();
-    const blob = new Blob([new Uint8Array(avatarBuffer) as BlobPart], { type: 'image/png' });
-    this.avatarUrl.set(URL.createObjectURL(blob));
+    if (avatarBuffer) {
+      const blob = new Blob([new Uint8Array(avatarBuffer) as BlobPart], { type: 'image/png' });
+      this.avatarUrl.set(URL.createObjectURL(blob));
+    }
   }
 
   /** Reset to a blank card. */

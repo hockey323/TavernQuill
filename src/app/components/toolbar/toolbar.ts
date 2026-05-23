@@ -66,8 +66,13 @@ export class ToolbarComponent {
   private async importFile(file: File): Promise<void> {
     this.importError.set(null);
     try {
-      const result = await this.pngService.readChara(file);
-      this.editor.loadCard(result.card, result.avatarBuffer, result.isV2Upgrade);
+      if (file.name.toLowerCase().endsWith('.json') || file.type === 'application/json') {
+        const result = await this.pngService.readCharaFromJson(file);
+        this.editor.loadCard(result.card, null, result.isV2Upgrade);
+      } else {
+        const result = await this.pngService.readChara(file);
+        this.editor.loadCard(result.card, result.avatarBuffer, result.isV2Upgrade);
+      }
     } catch (e) {
       this.importError.set(e instanceof Error ? e.message : 'Failed to import card.');
     }

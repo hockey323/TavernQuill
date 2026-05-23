@@ -29,8 +29,25 @@ export class PngService {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
 
-    const { json, isV2Upgrade } = readCharaFromPng(buffer);
+    const { json, isV2Upgrade: pngV2 } = readCharaFromPng(buffer);
 
+    const { card, isV2Upgrade: jsonV2 } = this.parseAndValidateJson(json);
+
+    return { card, isV2Upgrade: pngV2 || jsonV2, avatarBuffer: buffer };
+  }
+
+  /**
+   * Read a character card from a JSON file.
+   */
+  async readCharaFromJson(file: File): Promise<{ card: CharaCardV3; isV2Upgrade: boolean }> {
+    const text = await file.text();
+    return this.parseAndValidateJson(text);
+  }
+
+  /**
+   * Helper to parse, upgrade, and validate a JSON card string.
+   */
+  private parseAndValidateJson(json: string): { card: CharaCardV3; isV2Upgrade: boolean } {
     let parsed: any;
     try {
       parsed = JSON.parse(json);
@@ -41,8 +58,13 @@ export class PngService {
     // Automatically upgrade to V3 structure on import (§4.2)
     // We use createBlankCard() as a template to ensure all required fields exist.
     const template = createBlankCard();
-    
-    if (isV2Upgrade || (typeof parsed === 'object' && parsed !== null && !parsed.spec)) {
+    let isV2Upgrade = false;
+
+    if (typeof parsed === 'object' && parsed !== null && !parsed.spec) {
+      isV2Upgrade = true;
+    }
+
+    if (isV2Upgrade) {
       // It's a V2 card or raw data. Map V2 fields to the V3 data structure.
       const v2Data = (parsed && typeof parsed === 'object' && parsed.data) ? parsed.data : parsed;
       parsed = {
@@ -88,7 +110,7 @@ export class PngService {
     if (!card.data.created) card.data.created = Date.now();
     if (!card.data.modified) card.data.modified = Date.now();
 
-    return { card, isV2Upgrade, avatarBuffer: buffer };
+    return { card, isV2Upgrade };
   }
 
   /**
