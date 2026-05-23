@@ -116,7 +116,7 @@ export const EN_CA: I18nStrings = {
     depth_prompt: 'Depth Prompt',
   },
   actions: {
-    import: 'Import PNG',
+    import: 'Import PNG / JSON',
     export_png: 'Export PNG',
     export_json: 'Export JSON',
     new_card: 'New Card',
@@ -143,7 +143,7 @@ export const EN_CA: I18nStrings = {
     lorebook_coming_soon: 'Lorebook Editor — Coming Soon',
     lorebook_entries: 'Lorebook Entries',
     no_lorebook: 'No lorebook data in this card.',
-    drop_hint: 'Drag & drop a PNG character card here, or click to browse.',
+    drop_hint: 'Drag & drop a PNG or JSON character card here, or click to browse.',
     card_preview: 'Card Preview',
     chapter_complete: 'Complete',
     chapter_incomplete: 'Incomplete',
