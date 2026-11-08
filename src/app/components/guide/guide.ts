@@ -56,7 +56,7 @@ import { RouterModule } from '@angular/router';
     `
       .guide-container {
         padding: 2rem;
-        max-width: 800px;
+        max-width: 1040px;
         margin: 0 auto;
         color: var(--color-text);
       }

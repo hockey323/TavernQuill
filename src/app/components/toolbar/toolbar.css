@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
-  padding: var(--space-sm) var(--space-md);
+  padding: 10px var(--space-lg);
   background: var(--color-surface-0);
   border-bottom: 1px solid var(--color-border-subtle);
   min-height: var(--header-height);

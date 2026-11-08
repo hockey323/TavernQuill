@@ -1,6 +1,8 @@
 .chapter {
-  padding: var(--space-lg);
-  max-width: 720px;
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
+  padding-bottom: var(--space-2xl);
 }
 
 .chapter-title {
@@ -12,7 +14,10 @@
   margin-bottom: var(--space-xs);
 }
 
-.chapter-icon { color: var(--color-accent); }
+.chapter-icon {
+  color: var(--color-accent);
+  font-size: var(--font-size-xl);
+}
 
 .chapter-subtitle {
   font-size: var(--font-size-sm);
@@ -23,13 +28,13 @@
 .field-group { margin-bottom: var(--space-lg); }
 
 .field-hint {
-  margin-top: var(--space-xs);
+  margin-top: 6px;
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
 }
 
 .field-error {
-  margin-top: var(--space-xs);
+  margin-top: 6px;
   font-size: var(--font-size-xs);
   color: var(--color-error);
   font-weight: var(--font-weight-medium);
@@ -39,7 +44,7 @@
 
 .mono-input {
   font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
 }
 
 /* Alternate greetings */

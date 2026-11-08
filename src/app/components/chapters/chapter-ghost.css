@@ -1,6 +1,8 @@
 .chapter {
-  padding: var(--space-lg);
-  max-width: 720px;
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
+  padding-bottom: var(--space-2xl);
 }
 
 .chapter-title {
@@ -12,7 +14,10 @@
   margin-bottom: var(--space-xs);
 }
 
-.chapter-icon { color: var(--color-accent); }
+.chapter-icon {
+  color: var(--color-accent);
+  font-size: var(--font-size-xl);
+}
 
 .chapter-subtitle {
   font-size: var(--font-size-sm);
@@ -36,7 +41,7 @@
 }
 
 .lorebook-desc {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   color: var(--color-text-secondary);
   margin-bottom: var(--space-sm);
 }
@@ -122,16 +127,17 @@
 
 .entry-content {
   font-family: var(--font-mono);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   background: var(--color-surface-0);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-md);
   border-radius: var(--radius-sm);
   white-space: pre-wrap;
   word-break: break-word;
-  max-height: 200px;
+  max-height: 240px;
   overflow-y: auto;
   margin-bottom: var(--space-sm);
+  line-height: 1.6;
 }
 
 .entry-meta {
