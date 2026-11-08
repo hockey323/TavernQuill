@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { EditorService } from '../../services/editor.service';
 import { I18N, I18nStrings } from '../../i18n/en-ca';
@@ -14,6 +14,7 @@ interface ChapterInfo {
   standalone: true,
   imports: [RouterModule],
   templateUrl: './chapter-stepper.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './chapter-stepper.css',
 })
 export class ChapterStepperComponent {
@@ -30,11 +31,16 @@ export class ChapterStepperComponent {
 
   protected isComplete(index: number): boolean {
     switch (index) {
-      case 0: return this.editor.soulComplete();
-      case 1: return this.editor.mindComplete();
-      case 2: return this.editor.voiceComplete();
-      case 3: return this.editor.ghostComplete();
-      default: return false;
+      case 0:
+        return this.editor.soulComplete();
+      case 1:
+        return this.editor.mindComplete();
+      case 2:
+        return this.editor.voiceComplete();
+      case 3:
+        return this.editor.ghostComplete();
+      default:
+        return false;
     }
   }
 
@@ -53,11 +59,11 @@ export class ChapterStepperComponent {
       event.preventDefault();
       newIndex = 3;
     }
-    
+
     if (newIndex !== index) {
       const targetPath = this.chapters[newIndex].path;
       this.router.navigateByUrl(targetPath);
-      
+
       // Focus the new tab
       setTimeout(() => {
         const tabs = document.querySelectorAll<HTMLElement>('.stepper-item');

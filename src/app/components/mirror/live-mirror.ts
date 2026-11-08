@@ -1,4 +1,4 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, ChangeDetectionStrategy } from '@angular/core';
 import { EditorService } from '../../services/editor.service';
 import { I18N, I18nStrings } from '../../i18n/en-ca';
 
@@ -6,6 +6,7 @@ import { I18N, I18nStrings } from '../../i18n/en-ca';
   selector: 'app-live-mirror',
   standalone: true,
   templateUrl: './live-mirror.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './live-mirror.css',
 })
 export class LiveMirrorComponent {

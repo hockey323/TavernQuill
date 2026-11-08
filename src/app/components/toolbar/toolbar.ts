@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { EditorService } from '../../services/editor.service';
 import { PngService } from '../../services/png.service';
 import { CharaCardV3 } from '../../models/chara-card.model';
@@ -12,6 +12,7 @@ import blankCard from '../../../assets/cards/blank.json';
   selector: 'app-toolbar',
   standalone: true,
   templateUrl: './toolbar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './toolbar.css',
 })
 export class ToolbarComponent {
@@ -135,11 +136,15 @@ export class ToolbarComponent {
   // ── Starter Cards ─────────────────────────────────────────────────────
 
   protected toggleStarterMenu(): void {
-    this.showStarterMenu.update(v => !v);
+    this.showStarterMenu.update((v) => !v);
   }
 
   protected loadStarter(type: 'assistant' | 'complex' | 'blank'): void {
-    const cards: Record<string, unknown> = { assistant: assistantCard, complex: complexCard, blank: blankCard };
+    const cards: Record<string, unknown> = {
+      assistant: assistantCard,
+      complex: complexCard,
+      blank: blankCard,
+    };
     const card = JSON.parse(JSON.stringify(cards[type])) as CharaCardV3;
     // Set fresh timestamps
     card.data.created = Date.now();

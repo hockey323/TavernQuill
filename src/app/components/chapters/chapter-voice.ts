@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { EditorService } from '../../services/editor.service';
 import { I18N, I18nStrings } from '../../i18n/en-ca';
@@ -7,6 +7,7 @@ import { I18N, I18nStrings } from '../../i18n/en-ca';
   selector: 'app-chapter-voice',
   standalone: true,
   templateUrl: './chapter-voice.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './chapter-voice.css',
 })
 export class ChapterVoiceComponent {
@@ -17,13 +18,20 @@ export class ChapterVoiceComponent {
 
   constructor() {
     this.title.setTitle('Voice, Greetings & Dialogue Editor — SillyTavern V3');
-    this.meta.updateTag({ name: 'description', content: 'Craft authentic greetings and dialogue examples for your AI character. TavernQuill provides the premium voice editor for the SillyTavern community.' });
-    this.meta.updateTag({ property: 'og:title', content: 'Voice, Greetings & Dialogue Editor — SillyTavern V3' });
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Craft authentic greetings and dialogue examples for your AI character. TavernQuill provides the premium voice editor for the SillyTavern community.',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Voice, Greetings & Dialogue Editor — SillyTavern V3',
+    });
     this.editor.setChapter(2);
   }
 
   protected readonly mesExamplePlaceholder =
-    'Example conversations showing the character\'s tone and style…\n\nUse <START> to separate examples.\n{{user}}: User message\n{{char}}: Character response';
+    "Example conversations showing the character's tone and style…\n\nUse <START> to separate examples.\n{{user}}: User message\n{{char}}: Character response";
 
   protected onFieldChange(field: 'first_mes' | 'mes_example', event: Event): void {
     const el = event.target as HTMLTextAreaElement;
