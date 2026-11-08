@@ -45,6 +45,38 @@ describe('PngService', () => {
       expect(result.isV2Upgrade).toBe(false);
     });
 
+    it('should accept a V3 JSON card with character_book set to null', async () => {
+      const v3CardWithNullBook = {
+        spec: 'chara_card_v3',
+        spec_version: '3.0',
+        data: {
+          name: 'Warren',
+          description: 'Character description.',
+          personality: '',
+          scenario: 'A small rural jail.',
+          first_mes: 'Hello there.',
+          mes_example: '',
+          creator_notes: '',
+          system_prompt: '',
+          post_history_instructions: '',
+          character_version: 'main',
+          creator: 'Tester',
+          tags: ['test'],
+          alternate_greetings: [],
+          extensions: {},
+          character_book: null
+        }
+      };
+
+      const file = new File([JSON.stringify(v3CardWithNullBook)], 'Warren3.json', { type: 'application/json' });
+      const result = await service.readCharaFromJson(file);
+
+      expect(result.card.spec).toBe('chara_card_v3');
+      expect(result.card.data.name).toBe('Warren');
+      expect(result.card.data.character_book).toBeUndefined();
+      expect(result.isV2Upgrade).toBe(false);
+    });
+
     it('should successfully parse and upgrade a V2 JSON card to V3', async () => {
       const v2Card = {
         name: 'V2 Character',

@@ -88,6 +88,11 @@ export class PngService {
       };
     }
 
+    // Normalize null character_book (common in Chub/SillyTavern exports without a lorebook)
+    if (parsed.data && parsed.data.character_book === null) {
+      delete parsed.data.character_book;
+    }
+
     // Fix missing depth_prompt role
     if (parsed.data?.extensions?.depth_prompt && !parsed.data.extensions.depth_prompt.role) {
       parsed.data.extensions.depth_prompt.role = 'system';

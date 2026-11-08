@@ -59,7 +59,7 @@ export interface CharaCardData {
   extensions: SillyTavernExtensions | Record<string, unknown>;
 
   // Lorebook (optional)
-  character_book?: Lorebook;
+  character_book?: Lorebook | null;
 }
 
 // ── SillyTavern Extensions ──────────────────────────────────────────────────

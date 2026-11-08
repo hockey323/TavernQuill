@@ -81,8 +81,8 @@ export function validateCharaCard(obj: unknown): ValidationResult {
     }
   }
 
-  // Optional: validate character_book if present
-  if (data['character_book'] !== undefined) {
+  // Optional: validate character_book if present (null is allowed when no lorebook is set)
+  if (data['character_book'] !== undefined && data['character_book'] !== null) {
     validateLorebook(data['character_book'], errors);
   }
 
